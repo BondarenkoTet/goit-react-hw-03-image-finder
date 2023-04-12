@@ -1,40 +1,38 @@
 import { Component } from 'react';
-//import { getImg } from "services/fetch"ж
-import { ImageGalleryItem } from './ImageGalleryItem';
+import { ImageGalleryItem } from "./ImageGalleryItem"
 
 class ImageGallery extends Component{
     state = {
         //value: "",
         images: [],
-        // isloding: false,
+        isloader: false,
         // page:1,
     }
 
-
-    // const searchImg = this.props.searchImg.trim()
-//if(prevProps.searchImg !== searchImg && searchImg) {
-    //         this.setState({isloding: true})
-
-
-
-
     render() {
-        const {images, isloding} = this.state
+        const {images, isloader} = this.state;
         return (
             <> 
-            {isloding && <h2>Loading...</h2>}
+            {isloader && <h2>Loading...</h2>}
             {images && (
             <ul className="gallery">
-                {images.map((image) => (
-                    <ImageGalleryItem 
-                        image ={image.pageURL}
-                        key={image.id}
-                    />
-                    
-                // <li key={image.id} className="gallery-item">
-                //     <img src={image.pageURL} alt={image.tags} />
-                // </li>
-                ))}
+                {images.map((image) => {
+                    const {id, alt: {tags}, src:{pageURL}} = image;
+                    return (
+                        <li key={id} className="gallery-item">
+                            <img src={pageURL} alt={tags} />
+                        </li>
+
+
+
+                    // <ImageGalleryItem 
+                    //     key = {id}
+                    //     tags = {tags}
+                    //     src = {pageURL}
+                        // largeImageURL = {largeImageURL}
+                    ///>
+                    )
+            })}
             </ul>
             )}
             </>

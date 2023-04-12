@@ -1,6 +1,7 @@
+import { Component } from "react";
 
-export const ImageGalleryItem = ({id, webformatURL, largeImageURl, tag}) => {
+export const ImageGalleryItem = ({id, pageURL, previewURl, tags}) => {
     return  <li key={id} className="gallery-item">
-            <img src={webformatURL} alt={tag} />
+            <img src={pageURL} alt={tags} />
             </li>
 }

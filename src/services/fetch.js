@@ -4,11 +4,11 @@ const API_KEY = "33736384-d824c34936f956644527773fb"
 const BASE_URL = "https://pixabay.com/api/";
 
 export async function getImg(searchImg, page) {
-    const   data = await axios.get(
+    const  result = await axios.get(
     `${BASE_URL}?q=${searchImg}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
     );
-    console.log(data);
-    return  data;
+    console.log(result);
+    return  result;
 } 
 
 

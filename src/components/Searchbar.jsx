@@ -12,6 +12,9 @@ class Searchbar extends Component {
     };
     handleSubmit = e =>{
         e.preventDefault();
+        // if(this.state.value !== this.props.currentValue) {
+        //     this.props.getCurrentFetchValue(this.state.value);
+        // }
         if(this.state.value.trim() === "") {
             toast.error("Please enter a search value!")
         }
@@ -33,7 +36,7 @@ class Searchbar extends Component {
                     className="input"
                     type="text"
                     //autocomplete="off"
-                // autofocus
+                    // autofocus
                     placeholder="Search images and photos"
                     name= "value"
                     onChange ={this.handleChange}

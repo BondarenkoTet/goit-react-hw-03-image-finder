@@ -7,7 +7,6 @@ import { getImg } from "services/fetch";
 
 export default class App extends Component{
   state ={
-    //value: "",
     searchImg: null,
     isloader: false,
     page: 1,
@@ -16,27 +15,31 @@ export default class App extends Component{
   componentDidUpdate(prevProps, prevState) {
     const {searchImg, page} = this.state;
     if(prevState.searchImg !== this.state.searchImg) {
-    this.setState({loader: true}) 
-    
+    this.setState({isloader: true}) 
     getImg(searchImg, page)
-    .then(data => 
-      this.setState({
-        searchImg: data.data.hits,         
+    .then(data => this.setState({
+        searchImg: data.data.hits,      
         isloader: false
       }))
+      .then(console.log)
+    //.this.setState({})
     }
-    }
+  }
 
-    
-  
   createSearchImg = (searchImg) => {
     this.setState({searchImg})
   }
 
+  getCurrentFetchValue = currentValue => {
+    this.setState({ value: currentValue });
+  };
+
   render() {
     return(
       <div>
-        <Searchbar createSearchImg={this.createSearchImg}/>
+        <Searchbar createSearchImg={this.createSearchImg} 
+        // getCurrentFetchValue={this.getCurrentFetchValue}
+        />
         <ToastContainer autoClose={3000} />
         <ImageGallery searchImg={this.state.searchImg}/>
       </div>
