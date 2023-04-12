@@ -7,22 +7,27 @@ import { getImg } from "services/fetch";
 
 export default class App extends Component{
   state ={
-    value: "",
+    //value: "",
     searchImg: null,
     isloader: false,
     page: 1,
     
   }
   componentDidUpdate(prevProps, prevState) {
+    const {searchImg, page} = this.state;
     if(prevState.searchImg !== this.state.searchImg) {
-              console.log("change name")
-              console.log("prevState.searchImg:", prevState.searchImg)
-              console.log("this.state.searchImg", this.state.searchImg)
-    this.setState({loader: true}) ;
-    getImg(this.state.value, this.state.page)
-    .then(console.log)
+    this.setState({loader: true}) 
+    
+    getImg(searchImg, page)
+    .then(data => 
+      this.setState({
+        searchImg: data.data.hits,         
+        isloader: false
+      }))
     }
-  }
+    }
+
+    
   
   createSearchImg = (searchImg) => {
     this.setState({searchImg})
@@ -38,7 +43,7 @@ export default class App extends Component{
     )
   };
     
-};
+}
 
 
 

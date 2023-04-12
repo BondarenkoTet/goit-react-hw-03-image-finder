@@ -9,22 +9,6 @@ class ImageGallery extends Component{
         // isloding: false,
         // page:1,
     }
-    
-
-    
-    
-    
-    
-    
-
-// fetch(`https://pixabay.com/api/?q=${this.props.searchImg}&page=1&key=33736384-d824c34936f956644527773fb&image_type=photo&orientation=horizontal&per_page=12`)
-// .then(res => res.json())
-// .then(console.log)
-       // getImg(this.props.searchImg)
-    //    getImg().then(response => console.log(response))
-    //     }
-
-
 
 
     // const searchImg = this.props.searchImg.trim()
@@ -32,15 +16,6 @@ class ImageGallery extends Component{
     //         this.setState({isloding: true})
 
 
-                //  getImg(this.value, this.state.page).then(({hits}) => {
-                //      this.setState({images: hits})
-                //  })
-    //             .finally(() => {
-    //                 this.setState({isloding: false})
-    //                 //console.log()
-    //             }) 
-    //     }
-    //}
 
 
     render() {
