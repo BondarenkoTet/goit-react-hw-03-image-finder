@@ -17,12 +17,11 @@ export default class App extends Component{
     if(prevState.searchImg !== this.state.searchImg) {
     this.setState({isloader: true}) 
     getImg(searchImg, page)
+    //.then(console.log)
     .then(data => this.setState({
         searchImg: data.data.hits,      
         isloader: false
       }))
-      .then(console.log)
-    //.this.setState({})
     }
   }
 
@@ -30,15 +29,14 @@ export default class App extends Component{
     this.setState({searchImg})
   }
 
-  getCurrentFetchValue = currentValue => {
-    this.setState({ value: currentValue });
-  };
+  // getCurrentFetchValue = currentValue => {
+  //   this.setState({ value: currentValue });
+  // };
 
   render() {
     return(
       <div>
-        <Searchbar createSearchImg={this.createSearchImg} 
-        // getCurrentFetchValue={this.getCurrentFetchValue}
+        <Searchbar createSearchImg={this.createSearchImg}
         />
         <ToastContainer autoClose={3000} />
         <ImageGallery searchImg={this.state.searchImg}/>

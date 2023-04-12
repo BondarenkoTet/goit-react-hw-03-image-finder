@@ -17,20 +17,20 @@ class ImageGallery extends Component{
             {images && (
             <ul className="gallery">
                 {images.map((image) => {
-                    const {id, alt: {tags}, src:{pageURL}} = image;
+                   // const {id, alt: {tags}, src:{pageURL}} = image;
                     return (
-                        <li key={id} className="gallery-item">
-                            <img src={pageURL} alt={tags} />
-                        </li>
+                        // <li key={id} className="gallery-item">
+                        //     <img src={pageURL} alt={tags} />
+                        // </li>
 
 
 
-                    // <ImageGalleryItem 
-                    //     key = {id}
-                    //     tags = {tags}
-                    //     src = {pageURL}
+                    <ImageGalleryItem 
+                        // key = {id}
+                        // tags = {tags}
+                        // src = {pageURL}
                         // largeImageURL = {largeImageURL}
-                    ///>
+                    />
                     )
             })}
             </ul>

@@ -17,7 +17,8 @@ class Searchbar extends Component {
         // }
         if(this.state.value.trim() === "") {
             toast.error("Please enter a search value!")
-        }
+            return
+        } 
         this.props.createSearchImg(this.state.value)
         this.reset()
     }
