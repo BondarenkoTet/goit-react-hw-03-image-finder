@@ -1,7 +1,16 @@
-//import { Component } from "react";
+import { Component } from "react";
 
-export const ImageGalleryItem = ({id, pageURL, previewURl, tags}) => {
-    return  <li key={id} className="gallery-item">
-            <img src={pageURL} alt={tags} />
-            </li>
+export class ImageGalleryItem extends Component {
+    state ={
 }
+
+    render() {
+        return(
+            <li key={this.props.id} className="gallery-item">
+            <img src={this.props.webformatURL} 
+                alt={this.props.tags} />
+            </li> 
+        )
+    } 
+}
+

@@ -3,10 +3,8 @@ import { ImageGalleryItem } from "./ImageGalleryItem"
 
 class ImageGallery extends Component{
     state = {
-        //value: "",
         images: [],
         isloader: false,
-        // page:1,
     }
 
     render() {
@@ -16,23 +14,15 @@ class ImageGallery extends Component{
             {isloader && <h2>Loading...</h2>}
             {images && (
             <ul className="gallery">
-                {images.map((image) => {
-                   // const {id, alt: {tags}, src:{pageURL}} = image;
-                    return (
-                        // <li key={id} className="gallery-item">
-                        //     <img src={pageURL} alt={tags} />
-                        // </li>
-
-
-
+                {images.map(({id, webformatURL, tags, largeImageURL}) => (
+            
                     <ImageGalleryItem 
-                        // key = {id}
-                        // tags = {tags}
-                        // src = {pageURL}
-                        // largeImageURL = {largeImageURL}
+                    key={id}
+                    webformatURL={webformatURL}
+                    tags={tags}
+                    largeImageURL={largeImageURL}
                     />
-                    )
-            })}
+            ))}
             </ul>
             )}
             </>

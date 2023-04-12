@@ -10,6 +10,7 @@ export default class App extends Component{
     searchImg: null,
     isloader: false,
     page: 1,
+    images: null,
     
   }
   componentDidUpdate(prevProps, prevState) {
@@ -17,9 +18,8 @@ export default class App extends Component{
     if(prevState.searchImg !== this.state.searchImg) {
     this.setState({isloader: true}) 
     getImg(searchImg, page)
-    //.then(console.log)
-    .then(data => this.setState({
-        searchImg: data.data.hits,      
+    .then( data => this.setState({
+        images: data.data.hits,      
         isloader: false
       }))
     }
@@ -29,9 +29,6 @@ export default class App extends Component{
     this.setState({searchImg})
   }
 
-  // getCurrentFetchValue = currentValue => {
-  //   this.setState({ value: currentValue });
-  // };
 
   render() {
     return(
@@ -39,7 +36,8 @@ export default class App extends Component{
         <Searchbar createSearchImg={this.createSearchImg}
         />
         <ToastContainer autoClose={3000} />
-        <ImageGallery searchImg={this.state.searchImg}/>
+        <ImageGallery searchImg={this.state.searchImg} 
+            images={this.state.images}/>
       </div>
     )
   };
