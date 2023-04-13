@@ -1,14 +1,11 @@
 import { Component } from 'react';
 import { ImageGalleryItem } from "./ImageGalleryItem"
+//import Button from "./Button";
 
 class ImageGallery extends Component{
-    state = {
-        images: [],
-        isloader: false,
-    }
-
+    
     render() {
-        const {images, isloader} = this.state;
+        const {images, isloader} = this.props;
         return (
             <> 
             {isloader && <h2>Loading...</h2>}
@@ -22,9 +19,15 @@ class ImageGallery extends Component{
                     tags={tags}
                     largeImageURL={largeImageURL}
                     />
-            ))}
+                    ))}
             </ul>
             )}
+
+            
+        {/* {isVisibleBtn && <Button 
+            isVisibleBtn={this.state.isVisibleBtn}
+            onClick={this.props.onLoadMore}>Load more</Button>} */}
+            
             </>
         )
     }
