@@ -4,6 +4,7 @@ import Searchbar from "./Searchbar";
 import ImageGallery from "./ImageGallery";
 import { getImg } from "services/fetch";
 import Button from "./Button";
+import Modal from "./Modal/Modal"
 
 export default class App extends Component{
   state ={
@@ -12,56 +13,66 @@ export default class App extends Component{
     page: 1,
     images: null,
     isVisibleBtn :false,
-    
+    showModal: false,
+    isEmpty: false
   }
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     const {searchImg, page} = this.state;
     if(prevState.searchImg !== searchImg || prevState.page !== page) {
     this.setState({isloader: true}) 
     getImg(searchImg, page)
-    .then( data => this.setState({
+    .then( data => {this.setState({
         images: data.data.hits,      
         isloader: false,
         isVisibleBtn: true,
-      }))
-    }
+    });
+  })
+  .catch(error => this.setState({error: true}));
   }
-  createSearchImg = (searchImg) => {
-    this.setState({searchImg})
+
+  if([this.images].length < 1) {
+    this.setState({
+      isEmpty: true , 
+      isVisibleBtn: false,
+    })} 
+    // this.setState(prevState => ({
+    // images: [...prevState.images, ...searchImg]
+    // }))
   }
   
-  onLoadMore =() => {
-    //this.setState(prev => ({page: prev.page + 1}))
-
-    const nextPage = this.state.page +1;
-    getImg (this.state.searchImg, nextPage).then(data =>{
-      if(data.data.hits.length === 0) {
-            this.setState({isVisibleBtn: false})
-            alert("no more photo")
-            console.log(data)
-          }
-        }) 
+  createSearchImg = (searchImg) => {
+    this.setState({searchImg, images: [], page: 1})
   }
 
-// resetPage = () => {
-//       this.setState({ page: 1 });
-//     };
+  onLoadMore =() => {
+    this.setState(prevState => ({page: prevState.page + 1}));
+        
+  }
+  toggleModal = () => {
+    this.setState(({showModal}) => ({
+      showModal: !showModal
+    }))
+  }
 
   render() {
-    return(
+    const {searchImg, images, isloader, isVisibleBtn, 
+      showModal, isEmpty} = this.state
+    return (
       <div>
         <Searchbar createSearchImg={this.createSearchImg}
         />
         <ToastContainer autoClose={3000} />
         <ImageGallery 
-          searchImg={this.state.searchImg} 
-          images={this.state.images}
-          isloader={this.state.isloader}
+          searchImg={searchImg} 
+          images={images}
+          isloader={isloader}
+          isEmpty={isEmpty}
         />
         <Button 
-          isVisibleBtn={this.state.isVisibleBtn}
-          onClick={this.state.onLoadMore}
+          isVisibleBtn={isVisibleBtn}
+          onLoadMore={this.onLoadMore}
         />
+        {showModal && <Modal onClose={this.toggleModal}/>}  
       </div>
     )
   };

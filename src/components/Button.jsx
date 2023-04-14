@@ -9,7 +9,7 @@ class Button extends Component {
                 <button type="button"
                     className="loadMoreBtn" 
                     onClick={this.props.onLoadMore}
-                    >Load more</button>} 
+                    >Load more</button> }     
             </>   
         ) 
     }
