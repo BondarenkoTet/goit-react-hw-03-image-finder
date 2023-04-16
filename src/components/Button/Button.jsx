@@ -1,4 +1,5 @@
 import {Component} from "react";
+import css from "./Button.module.css"
 
 class Button extends Component {
     render () {
@@ -7,7 +8,7 @@ class Button extends Component {
             <>
                 {isVisibleBtn && 
                 <button type="button"
-                    className="loadMoreBtn" 
+                    className={css["loadMoreBtn"]} 
                     onClick={this.props.onLoadMore}
                     >Load more</button> }     
             </>   

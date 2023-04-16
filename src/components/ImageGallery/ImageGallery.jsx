@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import { ImageGalleryItem } from "./ImageGalleryItem"
+import { ImageGalleryItem } from "../GalleryItem/ImageGalleryItem"
+import css from "./ImageGallery.module.css"
 
 class ImageGallery extends Component{
     
@@ -9,7 +10,7 @@ class ImageGallery extends Component{
             <> 
             {isloader && <h2>Loading...</h2>}
             {images && (
-            <ul className="gallery">
+            <ul className={css.gallery}>
                 {images.map(({id, webformatURL, tags, largeImageURL}) => (
             
                     <ImageGalleryItem 

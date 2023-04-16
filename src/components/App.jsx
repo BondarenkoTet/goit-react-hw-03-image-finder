@@ -1,10 +1,11 @@
 import { Component } from "react";
 import { ToastContainer } from "react-toastify"
-import Searchbar from "./Searchbar";
-import ImageGallery from "./ImageGallery";
+import Searchbar from "./SearchBar/Searchbar";
+import ImageGallery from "./ImageGallery/ImageGallery";
 import { getImg } from "services/fetch";
-import Button from "./Button";
-import Modal from "./Modal/Modal"
+import Button from "./Button/Button";
+//import Loader from "./Loader/Loader";
+
 
 export default class App extends Component{
   state ={
@@ -13,31 +14,30 @@ export default class App extends Component{
     page: 1,
     images: null,
     isVisibleBtn :false,
-    showModal: false,
-    isEmpty: false
+    isEmpty: false, 
   }
   componentDidUpdate(_, prevState) {
     const {searchImg, page} = this.state;
+
     if(prevState.searchImg !== searchImg || prevState.page !== page) {
     this.setState({isloader: true}) 
+
     getImg(searchImg, page)
-    .then( data => {this.setState({
-        images: data.data.hits,      
-        isloader: false,
-        isVisibleBtn: true,
-    });
+    .then( data => {
+
+      if(data.data.hits.length < 1) {
+        this.setState({
+          isEmpty: true,
+          isVisibleBtn: false,
+        })} else {
+          this.setState(prev => ({
+          images: [...prev.images, ...data.data.hits],
+          isloader: false,
+          isVisibleBtn: true}))
+        }
   })
   .catch(error => this.setState({error: true}));
   }
-
-  if([this.images].length < 1) {
-    this.setState({
-      isEmpty: true , 
-      isVisibleBtn: false,
-    })} 
-    // this.setState(prevState => ({
-    // images: [...prevState.images, ...searchImg]
-    // }))
   }
   
   createSearchImg = (searchImg) => {
@@ -48,15 +48,10 @@ export default class App extends Component{
     this.setState(prevState => ({page: prevState.page + 1}));
         
   }
-  toggleModal = () => {
-    this.setState(({showModal}) => ({
-      showModal: !showModal
-    }))
-  }
 
   render() {
     const {searchImg, images, isloader, isVisibleBtn, 
-      showModal, isEmpty} = this.state
+        isEmpty} = this.state
     return (
       <div>
         <Searchbar createSearchImg={this.createSearchImg}
@@ -72,7 +67,7 @@ export default class App extends Component{
           isVisibleBtn={isVisibleBtn}
           onLoadMore={this.onLoadMore}
         />
-        {showModal && <Modal onClose={this.toggleModal}/>}  
+        {/* {isloader && <Loader ></Loader> } */}
       </div>
     )
   };
