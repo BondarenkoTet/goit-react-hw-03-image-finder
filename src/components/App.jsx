@@ -4,7 +4,7 @@ import Searchbar from "./SearchBar/Searchbar";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import { getImg } from "services/fetch";
 import Button from "./Button/Button";
-//import Loader from "./Loader/Loader";
+import Loader from "./Loader/Loader";
 
 
 export default class App extends Component{
@@ -60,14 +60,14 @@ export default class App extends Component{
         <ImageGallery 
           searchImg={searchImg} 
           images={images}
-          isloader={isloader}
+          //isloader={isloader}
           isEmpty={isEmpty}
         />
         <Button 
           isVisibleBtn={isVisibleBtn}
           onLoadMore={this.onLoadMore}
         />
-        {/* {isloader && <Loader ></Loader> } */}
+        {isloader && <Loader height={"100"} width={"100"}></Loader> }
       </div>
     )
   };

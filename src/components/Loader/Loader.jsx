@@ -1,26 +1,25 @@
-// import React from "react"
-// import css from "./Loader.module.css";
+import React from "react"
+import css from "./Loader.module.css";
+import {BallTriangle } from "react-loader-spinner"
 
+class Loader extends React.Component {
+    render() {
+        return (
+        <div className={css.loader}>
+            <BallTriangle
+                height={100}
+                width={100}
+                radius={5}
+                color="#4fa94d"
+                ariaLabel="ball-triangle-loading"
+                wrapperClass={{}}
+                wrapperStyle=""
+                visible={true}
+            />
+        </div>
+)}}
 
-//import {BallTriangle } from "react-content-loader"
-// class Loader extends React.Component {
-//     render() {
-//         return (
-//         <div className={css.loader}>
-//             <BallTriangle
-//                 height={100}
-//                 width={100}
-//                 radius={5}
-//                 color="#4fa94d"
-//                 ariaLabel="ball-triangle-loading"
-//                 wrapperClass={{}}
-//                 wrapperStyle=""
-//                 visible={true}
-//             />
-//         </div>
-// )}}
-
-// export default Loader;
+export default Loader;
 
 
 
