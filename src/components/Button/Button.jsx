@@ -1,18 +1,34 @@
-import {Component} from "react";
+import React from 'react'
 import css from "./Button.module.css"
 
-class Button extends Component {
-    render () {
-        const {isVisibleBtn} = this.props;
-        return (
-            <>
-                {isVisibleBtn && 
-                <button type="button"
-                    className={css["loadMoreBtn"]} 
-                    onClick={this.props.onLoadMore}
-                    >Load more</button> }     
-            </>   
-        ) 
-    }
+const Button = ({isVisibleBtn, onLoadMore}) => {
+
+return (
+        <>
+        {isVisibleBtn && 
+        <button type="button"
+                className={css["loadMoreBtn"]} 
+                onClick={onLoadMore}>Load more
+        </button> } 
+        </>
+        )
 }
-export default Button;
+
+export default Button ;
+
+
+// class Button extends Component {
+//     render () {
+//         const {isVisibleBtn} = this.props;
+//         return (
+//             <>
+//                 {isVisibleBtn && 
+//                 <button type="button"
+//                     className={css["loadMoreBtn"]} 
+//                     onClick={this.props.onLoadMore}
+//                     >Load more</button> }     
+//             </>   
+//         ) 
+//     }
+// }
+// export default Button;
