@@ -20,7 +20,8 @@ export default function App() {
     if( !searchImg) {
       return;
     }
-  setIsLoader(true);   
+  setIsLoader(true); 
+  setPage(1); 
     getImg(searchImg, page)
     .then( data => {
       if(data.data.hits.length < 1) {
@@ -35,7 +36,7 @@ export default function App() {
       .catch(error => error(true));
     }, [searchImg, page])
         
-  
+
   const createSearchImg = currentImg => {
     if(searchImg !== currentImg) {
       setSearchImg(currentImg);
@@ -132,11 +133,7 @@ export default function App() {
 //       )
 //     };
       
-//   }
-  
-  
-  
-  
+//   } 
     
 // }
 
